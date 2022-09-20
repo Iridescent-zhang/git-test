@@ -1,0 +1,161 @@
+---
+title: 学习Git
+date: 2022-09-19 16:47:52
+categories: 
+  - Git
+tags:
+  - git
+---
+
+## Git
+Git 是一个开源的**分布式-版本控制系统**，用于敏捷高效地处理任何或小或大的项目。
+Git 与常用的版本控制工具 CVS, Subversion（SVN）等不同，它采用了分布式版本库的方式，不必服务器端软件支持。
+Git 不仅仅是个版本控制系统，它也是个内容管理系统(CMS)，工作管理系统等。
+<!--more-->
+你的本地仓库由 git 维护的三棵“树”组成。第一个是你的 工作目录（工作目录下含有.git文件夹），它持有实际文件；第二个是 暂存区（Index，stage），它像个缓存区域，临时保存你的改动；最后是 HEAD，它指向你最后一次提交的结果。
+![本地仓库组成](https://www.runoob.com/manual/git-guide/img/trees.png)
+
+> **git 基本工作流程**
+> 1. 提出更改（把它们添加到暂存区），使用如下命令：
+>  `git add <filename>` 
+>
+> 2. 使用如下命令以实际提交改动：
+>  `git commit -m "代码提交备注" `
+>  现在，你的改动已经提交到了本地仓库的 HEAD 中，但是还没到你的远端仓库。
+>
+> 3. 执行如下命令以将这些改动推送到远端仓库：
+>  `git push origin master`
+>  可以把 master 换成你想要推送的任何分支。
+>
+> 4. 如果你想要将你的本地仓库连接到某个远程服务器（github），你可以使用如下命令添加：
+>  `git remote add origin <server>`
+>  如此你就能够将你的改动推送到所添加的服务器上去了。
+>
+> 5. 在你创建仓库的时候，master 是“默认的”分支。在其他分支上进行开发，完成后再将它们合并到主分支上。
+> ![分支](https://www.runoob.com/manual/git-guide/img/branches.png)
+> 创建一个叫做“feature_x”的分支，并切换过去：
+> `git checkout -b feature_x`
+> 切换回主分支：
+> `git checkout master`
+> 再把新建的分支删掉：
+> `git branch -d feature_x`
+> 除非你将分支推送到远端仓库，不然该分支就是 不为他人所见的：
+> `git push origin <branch>`
+> 
+> 6. 更新与合并
+> 要更新你的本地仓库至最新改动，执行：
+> `git pull`
+> 以在你的工作目录中 获取（fetch） 并 合并（merge） 远端的改动。
+> 要合并其他分支到你的当前分支（例如 master），执行：
+> `git merge <branch>`
+> 这两种情况下，git 都会尝试去自动合并改动。遗憾的是，这可能并非每次都成功，并可能出现冲突（conflicts）。 这时候就需要你修改这些文件来手动合并这些冲突（conflicts）。
+> 在合并改动之前，你可以使用如下命令预览差异：
+> `git diff <source_branch> <target_branch>`
+>
+> 7. 标签
+> 你可以执行如下命令创建一个叫做 1.0.0 的标签：
+> `git tag 1.0.0 1b2e1d63ff`
+> b2e1d63ff 是你想要标记的提交 ID 的前 10 位字符。可以使用下列命令获取提交 ID：
+> `git log`
+> 
+> 8. 替换本地改动
+> 假如你操作失误（当然，这最好永远不要发生），你可以使用如下命令替换掉本地改动：
+> `git checkout -- <filename>`
+> 此命令会使用 HEAD 中的最新内容替换掉你的工作目录中的文件。已添加到暂存区的改动以及新文件都不会受到影响。
+> 假如你想丢弃你在本地的所有改动与提交，可以到服务器上获取最新的版本历史，并将你本地主分支指向它：
+> `git fetch origin`
+> `git reset --hard origin/master`
+> 
+
+## Git 工作流程
+> 一般工作流程如下：
+> - 克隆 Git 资源作为工作目录(git clone https://github.com/Iridescent-zhang/blog.git)。
+> - 在克隆的资源上添加或修改文件。
+> - 如果其他人修改了，你可以更新资源。
+> - 在提交前查看修改。
+> - 提交修改。
+> - 在修改完成后，如果发现错误，可以撤回提交并再次修改并提交。
+> ![Git工作流程](https://www.runoob.com/wp-content/uploads/2015/02/git-process.png)
+> 
+
+## Git 工作区、暂存区和版本库
+- 工作区：就是你在电脑里能看到的目录。
+- 暂存区：英文叫 stage 或 index。一般存放在 .git 目录下的 index 文件（.git/index）中，所以我们把暂存区有时也叫作索引（index）。
+- 版本库：工作区有一个隐藏目录 .git，这个不算工作区，而是 Git 的版本库。
+![工作区、版本库中的暂存区和版本库之间的关系](https://www.runoob.com/wp-content/uploads/2015/02/1352126739_7909.jpg)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[Windows下如何解决git bash的默认home目录路径问题](https://www.cnblogs.com/songzhenhua/p/9312720.html)
